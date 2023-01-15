@@ -19,7 +19,7 @@ namespace Tests.ControllerTests
             Provider provider = testEnvironment.AddProvider();
             Customer customer = testEnvironment.AddCustomer(provider: provider);
             Event evnt = testEnvironment.AddEvent(provider: provider);
-            Booking booking = testEnvironment.AddBooking(evnt: evnt, customer: customer);
+            Booking booking = testEnvironment.AddBooking(evnt: evnt, customer: customer, notes: "Some sample notes - GetBooking_ById_Exists");
             testEnvironment.AddRoleToProvider(provider.Id);
 
             // [Act]
@@ -36,6 +36,7 @@ namespace Tests.ControllerTests
 
             bookingDto.ShouldNotBe(null);
             bookingDto.Id.ShouldBe(booking.Id);
+            bookingDto.Notes.ShouldBe(booking.Notes);
         }
     }
 }
