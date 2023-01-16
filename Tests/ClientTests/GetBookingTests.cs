@@ -21,7 +21,7 @@ namespace InterviewService.Tests.ClientTests
             var provider = testEnvironment.AddProvider();
             var customer = testEnvironment.AddCustomer(provider: provider);
             var evnt = testEnvironment.AddEvent(provider: provider);
-            var booking = testEnvironment.AddBooking(evnt: evnt, customer: customer);
+            var booking = testEnvironment.AddBooking(evnt: evnt, customer: customer, notes: "Some sample notes - GetBookingById");
             var role = testEnvironment.AddRoleToProvider(provider.Id, testEnvironment.Configuration.SERVICE_USERID);
             var client = new InterviewServiceClient("http://localhost:5000", testEnvironment.Configuration.SERVICE_USERTOKEN);
 
@@ -34,6 +34,7 @@ namespace InterviewService.Tests.ClientTests
             response.Successful.ShouldBe(true);
             response.HttpResponse.StatusCode.ShouldBe(HttpStatusCode.OK);
             response.Value.Id.ShouldBe(booking.Id);
+            response.Value.Notes.ShouldBe(booking.Notes);
         }
     }
 }

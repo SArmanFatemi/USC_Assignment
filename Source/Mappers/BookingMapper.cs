@@ -21,11 +21,13 @@ namespace InterviewService.Mappers
         {
             return bookings.Select(x => new BookingDto
             {
+                Id = x.Id,
                 ProviderId = x.ProviderId,
                 EventId = x.EventId,
                 CustomerId = x.CustomerId,
                 Deleted = x.Deleted,
                 TimeStamp = x.TimeStamp,
+                Notes = x.Notes,
             })
             .ToList();
         }
